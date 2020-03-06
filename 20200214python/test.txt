@@ -1,0 +1,3 @@
+apple 30 5
+chip 40 3
+coke 25 4

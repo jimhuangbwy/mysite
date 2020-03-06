@@ -1,0 +1,4 @@
+StoneCampus A
+A03       Charlie   M              180.0      70.5
+A02       Alice     F              170.0      48.1
+A10       Easter    M                160        65
