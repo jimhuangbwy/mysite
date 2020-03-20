@@ -1,6 +1,12 @@
+h1 {
+  color: gray;
+}
+
 h2 {
   color: blue;
   background-color: yellow;
+  border: 3px solid purple;
+  text-align: center;
 }
 
 p {
