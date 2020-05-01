@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to MyShop</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Cart Edit</h1>
+    <form action="/cart/edit" method="post">
+      <div>
+        <label for="pen">Pen:</label>
+        <input id="pen" type="text" name="pen" value="{{cart['sku01']}}">
+        {% if errors['sku01'] %}
+        <div>{{ errors['sku01'] }}</div>
+        {% endif %}
+      </div>
+      <div>
+        <label for="cup">Cup:</label>
+        <input id="cup" type="text" name="cup" value="{{cart['sku02']}}">
+        {% if errors['sku02'] %}
+        <div>{{ errors['sku02'] }}</div>
+        {% endif %}
+      </div>
+      <p><button type="submit">Submit</button></p>
+    </form>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from flask import request, redirect
 
 products = {
   "sku01": { 
@@ -49,7 +50,42 @@ def myshop():
     return render_template("myshop.html", products=products, 
       cart=cart, total=total)
 
+@app.route("/about")
+def about():
+  return render_template("about.html")
+
 @app.route("/product/<id>")
 def product(id):
     p = products[id]
     return render_template("product.html", product=p)
+
+@app.route('/product/<id>/edit', methods = ['GET', 'POST'])
+def edit(id):
+    prod = products[id]
+    if request.method == 'POST':
+        prod['name'] = request.form['name']
+        prod['price'] = int(request.form['price'])
+        prod['desc'] = request.form['desc']
+        prod['image'] = request.form['image']
+        return redirect('/product/' + id)
+    return render_template('product-edit.html', product=prod)
+
+@app.route("/cart/edit", methods = ['GET', 'POST'])
+def cartEdit():
+    errors = {}
+    if request.method == 'POST':
+      pen = int(request.form['pen'])
+      cup = int(request.form['cup'])
+      if pen <= 0:
+        errors['sku01'] = 'should be positive'
+      if cup <= 0:
+        errors['sku02'] = 'should be positive'
+
+      if len(errors):
+        return render_template("cart-edit.html", cart=cart, errors=errors)
+
+      cart['sku01'] = pen
+      cart['sku02'] = cup
+      return redirect('/')
+
+    return render_template("cart-edit.html", cart=cart, errors=errors)
