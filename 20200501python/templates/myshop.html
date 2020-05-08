@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Products</h1>
+  <p class="lead">List of products</p>
+</div>
+
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+    {% for key, pd in products.items() %}
+    <div class="card mb-4 shadow-sm">
+      <a href="/product/{{pd.id}}">
+        <img src="{{pd.image}}" class="card-img-top" alt="..." style="height: 200px;">
+      </a>
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">{{pd.name}}</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">NTD:${{pd.price}}</h1>
+        <p>{{pd.desc}}</p>
+        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </div>
+</div>
+{% endblock %}

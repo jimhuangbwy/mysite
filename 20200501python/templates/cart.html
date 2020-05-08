@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block main %}  
+<div class="container">
+  <h1>Cart</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>img</th>
+        <th scope="col">#id</th>
+        <th scope="col">name</th>
+        <th scope="col">price</th>
+        <th scope="col">num</th>
+        <th scope="col">total</th>
+        <th>remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for id, num in mycart.items() %}
+      {% set pd = products[id] %}
+      <tr>
+        <td>
+          <img src="{{pd.image}}" style="width: 100px;"/>
+        </td>
+        <td>{{id}}</td>
+        <td>{{pd.name}}</td>
+        <td>{{pd.price}}</td>
+        <td>{{num}}</td>
+        <td>{{pd.price * num}}</td>
+        <td>
+          <a href="/remove-cart/{{id}}" class="btn btn-danger">Remove</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+  <h4>Total: {{total}}</h4>
+</div>
+{% endblock %}
